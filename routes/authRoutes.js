@@ -9,12 +9,17 @@ router.post("/signup", async (req, res) => {
   const { username, password } = req.body;
 
   try {
+    console.log('1');
     const existing = await User.findOne({ username });
+    console.log('2');
     if (existing) return res.status(400).json({ error: "User already exists" });
+    console.log('3');
 
     // const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User({ username, password: password });
+    console.log('4');
     await user.save();
+    console.log('5');
 
     const token = jwt.sign(
         { id: user._id, username: user.username },
