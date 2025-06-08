@@ -18,6 +18,8 @@ router.post("/signup", async (req, res) => {
     // const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User({ username, password: password });
     console.log('4');
+    console.log('Request body:', req.body);
+    console.log('Username:', username, 'Password:', password);
     await user.save();
     console.log('5');
 
